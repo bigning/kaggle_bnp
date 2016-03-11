@@ -5,7 +5,17 @@ import pandas as pd
 from sklearn import ensemble
 import sklearn
 import computing_loss
+from optparse import OptionParser
 
+parser = OptionParser()
+parser.add_option('-l', '--learning_rate', dest='learning_rate', action='store', type='float',default=0.1)
+parser.add_option('-n', '--n_estimators', dest='n_estimators', action='store', type='int',default=100)
+parser.add_option('-d', '--max_depth', dest='max_depth', action='store', type='int',default=8)
+(opt, args) = parser.parse_args()
+if len(args)!=0:
+    parser.print_help()
+    sys.exit()
+    
 ## loading data
 ### loading train and validataion data
 print('loading data')
@@ -68,7 +78,7 @@ val_data = fill_nan(train_data, val_data)
 test_data = fill_nan(train_data, test_data)
 
 print('training logistic regression model')
-gbdt = sklearn.ensemble.GradientBoostingClassifier(learning_rate = 0.1, n_estimators=100, subsample=0.8, verbose = 2, max_depth = 8, max_features = 0.7)
+gbdt = sklearn.ensemble.GradientBoostingClassifier(learning_rate = opt.learning_rate, n_estimators=opt.n_estimators, subsample=0.8, verbose = 2, max_depth = opt.max_depth, max_features = 0.7)
 gbdt.fit(train_data, train_label)
 
 print('predict validataion data')
