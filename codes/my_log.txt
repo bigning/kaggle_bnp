@@ -1,0 +1,7 @@
+1. gbdt baseline: 0.4854 on validation set, 0.492371 on training set
+2. 100 estimator -> 200 estimators. val:0.4913, train: 0.4794 
+4. 200 estimators -> 500 estimators. subsample = 0.9 val:0.4910, train: 0.4636
+5. 100 estimators, convert the category columns to int columns, val:0.4602, train:0.2592, subsample 0.96, max_depth=11, max_feature=0.5, leadboard:0.46977
+6. 100 estimators, sub_sample 0.9, max_depth 5, max_features 0.8, val:0.4706, train:0.4484
+7. parameters are same as 5, but remove the correlated columns, val:0.4699, train:0.2544, test:0.47171
+8. sum_sample:0.8, max_depth:8, max_features:0.7 val:0.4698, train:0.3808
