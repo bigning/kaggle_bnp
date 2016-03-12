@@ -11,6 +11,7 @@ parser = OptionParser()
 parser.add_option('-l', '--learning_rate', dest='learning_rate', action='store', type='float',default=0.1)
 parser.add_option('-n', '--n_estimators', dest='n_estimators', action='store', type='int',default=100)
 parser.add_option('-d', '--max_depth', dest='max_depth', action='store', type='int',default=8)
+parser.add_option('-f', '--save_name', dest='save_name', action='store', type='string')
 (opt, args) = parser.parse_args()
 if len(args)!=0:
     parser.print_help()
@@ -95,4 +96,4 @@ print('train loss: %f'%(train_loss))
 
 print('predict test set')
 test_predict = gbdt.predict_proba(test_data)
-computing_loss.write_res('res/gbdt.csv', test_id.values, test_predict[:,1])
+computing_loss.write_res('res/'+opt.save_name, test_id.values, test_predict[:,1])
