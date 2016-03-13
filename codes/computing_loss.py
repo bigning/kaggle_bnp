@@ -5,9 +5,9 @@ def loss(target, output):
     res = 0
     for i in range(target.size):
         if target[i] == 1:
-            res += -math.log(output[i])
+            res += -math.log(output[i] + 0.00000000001)
         else:
-            res += -math.log(1 - output[i])
+            res += -math.log(1 - output[i] + 0.00000000001)
     res /= target.size
     return res
 

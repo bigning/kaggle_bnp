@@ -1,5 +1,5 @@
-res_file_names = ['./res/gbdt_rm_corr_0.47171.csv', './res/gbdt_0.4697.csv', './res/gbdt.csv']
-weights = [1.0/3.0, 1.0/3.0, 1.0/3.0]
+res_file_names = ['./res/gbdt_0.01_1000.csv','./res/gbdt_lr_0.005_1000.csv']
+weights = [0.5, 0.5]
 
 new_res = {}
 index = 0
