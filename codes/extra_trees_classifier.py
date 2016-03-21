@@ -3,9 +3,11 @@ import numpy as np
 import csv
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import ExtraTreesClassifier
+from sklearn.grid_search import GridSearchCV
 from sklearn import ensemble
 from sklearn.metrics import log_loss
 from sklearn.naive_bayes import BernoulliNB
+from sklearn.metrics import log_loss
 from optparse import OptionParser
 import computing_loss
 
@@ -119,7 +121,17 @@ for (train_name, train_series), (test_name, test_series) in zip(train.iteritems(
 X_train = train
 X_test = test
 print('Training...')
-extc = ExtraTreesClassifier(n_estimators=opt.n_estimators,max_features= 60,criterion= 'entropy',min_samples_split= 4,max_depth= opt.max_depth, min_samples_leaf= 2, n_jobs = -1, verbose = 2, random_state=3211254)
+
+param_grids = {"criterion":["gini", "entropy"],
+        "max_features":[60, None, "auto", "log2"],
+        "min_samples_split": [2,4,10],
+        "min_samples_leaf":[2,4,10],
+        "max_depth":[10,20,40]
+        }
+extc = ExtraTreesClassifier(n_estimators=opt.n_estimators,  n_jobs = -1,  random_state=3122010)
+grid_search_model = GridSearchCV(estimator = extc, param_grid=param_grids, scoring='log_loss',n_jobs=-1,verbose=2)
+
+extc = grid_search_model
 
 extc.fit(X_train,target)
 
