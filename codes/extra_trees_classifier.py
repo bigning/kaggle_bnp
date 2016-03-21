@@ -119,7 +119,7 @@ for (train_name, train_series), (test_name, test_series) in zip(train.iteritems(
 X_train = train
 X_test = test
 print('Training...')
-extc = ExtraTreesClassifier(n_estimators=opt.n_estimators,max_features= 60,criterion= 'entropy',min_samples_split= 4,max_depth= opt.max_depth, min_samples_leaf= 2, n_jobs = -1, verbose = 2, random_state=3122010)
+extc = ExtraTreesClassifier(n_estimators=opt.n_estimators,max_features= 60,criterion= 'entropy',min_samples_split= 4,max_depth= opt.max_depth, min_samples_leaf= 2, n_jobs = -1, verbose = 2, random_state=3211254)
 
 extc.fit(X_train,target)
 
